@@ -1,4 +1,4 @@
-namespace TMS.Domain.Common.Models.ValueObjects.Orders;
+namespace TMS.Domain.ValueObjects;
 
 public sealed class DeliveryAddress
 {

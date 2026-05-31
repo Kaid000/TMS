@@ -1,4 +1,4 @@
-namespace TMS.Domain.Common.Models.Enums.Orders;
+namespace TMS.Domain.Enums;
 
 public enum PaymentMethod
 {

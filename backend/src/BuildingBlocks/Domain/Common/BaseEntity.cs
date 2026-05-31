@@ -1,4 +1,4 @@
-namespace TMS.Domain.Common.Models.Entities;
+namespace TMS.Domain.Common;
 
 public abstract class BaseEntity
 {

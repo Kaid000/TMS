@@ -1,4 +1,6 @@
-namespace TMS.Domain.Common.Models.Entities.OrderAcceptance;
+using TMS.Domain.Common;
+
+namespace TMS.Domain.Entities;
 
 public sealed class DelivererOrderResponse : BaseEntity
 {

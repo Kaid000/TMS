@@ -1,6 +1,7 @@
-using TMS.Domain.Common.Models.Enums.Identity;
+using TMS.Domain.Common;
+using TMS.Domain.Enums;
 
-namespace TMS.Domain.Common.Models.Entities.Identity;
+namespace TMS.Domain.Entities;
 
 public abstract class User : BaseEntity
 {

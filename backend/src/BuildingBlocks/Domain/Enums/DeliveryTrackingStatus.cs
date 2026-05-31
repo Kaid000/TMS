@@ -1,4 +1,4 @@
-namespace TMS.Domain.Common.Models.Enums.Delivery;
+namespace TMS.Domain.Enums;
 
 public enum DeliveryTrackingStatus
 {

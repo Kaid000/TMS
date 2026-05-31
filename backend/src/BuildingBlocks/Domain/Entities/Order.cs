@@ -1,8 +1,8 @@
-using TMS.Domain.Common.Models.Entities.Identity;
-using TMS.Domain.Common.Models.Enums.Orders;
-using TMS.Domain.Common.Models.ValueObjects.Orders;
+using TMS.Domain.Common;
+using TMS.Domain.Enums;
+using TMS.Domain.ValueObjects;
 
-namespace TMS.Domain.Common.Models.Entities.Orders;
+namespace TMS.Domain.Entities;
 
 public sealed class Order : BaseEntity
 {
@@ -30,9 +30,7 @@ public sealed class Order : BaseEntity
 
     public string? RouteGraphId { get; private set; }
 
-    private readonly List<OrderItem> orderItems = [];
-
-    public IReadOnlyCollection<OrderItem> OrderItems => orderItems.AsReadOnly();
+    public ICollection<OrderItem> orderItems { get; private set; } = [];
 
     private Order()
     {

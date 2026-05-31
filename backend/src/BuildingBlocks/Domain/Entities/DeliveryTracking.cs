@@ -1,6 +1,7 @@
-using TMS.Domain.Common.Models.Enums.Delivery;
+using TMS.Domain.Common;
+using TMS.Domain.Enums;
 
-namespace TMS.Domain.Common.Models.Entities.Delivery;
+namespace TMS.Domain.Entities;
 
 public sealed class DeliveryTracking : BaseEntity
 {

@@ -1,4 +1,4 @@
-namespace TMS.Domain.Common.Models.Enums.Identity;
+namespace TMS.Domain.Enums;
 
 public enum UserKind
 {

@@ -1,4 +1,6 @@
-namespace TMS.Domain.Common.Models.Entities.Orders;
+using TMS.Domain.Common;
+
+namespace TMS.Domain.Entities;
 
 public sealed class OrderItem : BaseEntity
 {
@@ -20,7 +22,7 @@ public sealed class OrderItem : BaseEntity
     {
     }
 
-    internal OrderItem(
+    public OrderItem(
         Guid orderId,
         string name,
         int quantity,

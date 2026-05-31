@@ -1,6 +1,6 @@
-using TMS.Domain.Common.Models.Enums.Identity;
+using TMS.Domain.Enums;
 
-namespace TMS.Domain.Common.Models.Entities.Identity;
+namespace TMS.Domain.Entities;
 
 public sealed class Customer : User
 {
@@ -9,7 +9,7 @@ public sealed class Customer : User
         Kind = UserKind.Customer;
     }
 
-    internal Customer(string email, string passwordHash, string phone, string displayName)
+    public Customer(string email, string passwordHash, string phone, string displayName)
         : base(UserKind.Customer, email, passwordHash, phone, displayName)
     {
     }

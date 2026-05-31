@@ -1,6 +1,6 @@
-using TMS.Domain.Common.Models.Enums.Identity;
+using TMS.Domain.Enums;
 
-namespace TMS.Domain.Common.Models.Entities.Identity;
+namespace TMS.Domain.Entities;
 
 public sealed class Deliverer : User
 {
@@ -13,7 +13,7 @@ public sealed class Deliverer : User
         Kind = UserKind.Deliverer;
     }
 
-    internal Deliverer(
+    public Deliverer(
         string email,
         string passwordHash,
         string phone,
