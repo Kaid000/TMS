@@ -8,4 +8,9 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="TMS.Authentication" />
+    <InternalsVisibleTo Include="TMS.Infrastructure" />
+  </ItemGroup>
+
 </Project>

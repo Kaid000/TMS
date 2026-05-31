@@ -9,11 +9,8 @@ public sealed class Customer : User
         Kind = UserKind.Customer;
     }
 
-    private Customer(string email, string passwordHash, string phone, string displayName)
+    internal Customer(string email, string passwordHash, string phone, string displayName)
         : base(UserKind.Customer, email, passwordHash, phone, displayName)
     {
     }
-
-    public static Customer Register(string email, string passwordHash, string phone, string displayName) =>
-        new(email, passwordHash, phone, displayName);
 }

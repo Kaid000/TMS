@@ -8,5 +8,5 @@ public abstract class BaseEntity
 
     public DateTime? UpdatedAtUtc { get; protected set; }
 
-    protected void Touch() => UpdatedAtUtc = DateTime.UtcNow;
+    protected void MarkUpdated() => UpdatedAtUtc = DateTime.UtcNow;
 }

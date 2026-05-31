@@ -4,11 +4,11 @@ public sealed class OrderItem : BaseEntity
 {
     public Guid OrderId { get; private set; }
 
-    public Order Order { get; private set; } = null!;
+    public Order order { get; private set; } = null!;
 
     public string Name { get; private set; } = string.Empty;
 
-    public string? Sku { get; private set; }
+    public string? StockKeepingUnit { get; private set; }
 
     public int Quantity { get; private set; }
 
@@ -20,7 +20,12 @@ public sealed class OrderItem : BaseEntity
     {
     }
 
-    internal OrderItem(Guid orderId, string name, int quantity, decimal unitPrice, string? sku = null)
+    internal OrderItem(
+        Guid orderId,
+        string name,
+        int quantity,
+        decimal unitPrice,
+        string? stockKeepingUnit = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(name);
 
@@ -34,6 +39,6 @@ public sealed class OrderItem : BaseEntity
         Name = name;
         Quantity = quantity;
         UnitPrice = unitPrice;
-        Sku = sku;
+        StockKeepingUnit = stockKeepingUnit;
     }
 }

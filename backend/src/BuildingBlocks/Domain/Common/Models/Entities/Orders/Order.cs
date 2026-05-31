@@ -8,17 +8,17 @@ public sealed class Order : BaseEntity
 {
     public Guid CustomerId { get; private set; }
 
-    public Customer Customer { get; private set; } = null!;
+    public Customer customer { get; private set; } = null!;
 
     public Guid? DelivererId { get; private set; }
 
-    public Deliverer? Deliverer { get; private set; }
+    public Deliverer? deliverer { get; private set; }
 
     public OrderStatus Status { get; private set; } = OrderStatus.Draft;
 
     public PaymentMethod PaymentMethod { get; private set; }
 
-    public DeliveryAddress DeliveryAddress { get; private set; } = null!;
+    public DeliveryAddress deliveryAddress { get; private set; } = null!;
 
     public decimal ItemsTotal { get; private set; }
 
@@ -30,9 +30,9 @@ public sealed class Order : BaseEntity
 
     public string? RouteGraphId { get; private set; }
 
-    private readonly List<OrderItem> _items = [];
+    private readonly List<OrderItem> orderItems = [];
 
-    public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
+    public IReadOnlyCollection<OrderItem> OrderItems => orderItems.AsReadOnly();
 
     private Order()
     {
@@ -42,7 +42,7 @@ public sealed class Order : BaseEntity
         Customer customer,
         PaymentMethod paymentMethod,
         DeliveryAddress deliveryAddress,
-        IEnumerable<(string Name, int Quantity, decimal UnitPrice, string? Sku)> items,
+        IEnumerable<(string Name, int Quantity, decimal UnitPrice, string? StockKeepingUnit)> items,
         decimal fees)
     {
         ArgumentNullException.ThrowIfNull(customer);
@@ -51,16 +51,21 @@ public sealed class Order : BaseEntity
         var order = new Order
         {
             CustomerId = customer.Id,
-            Customer = customer,
+            customer = customer,
             PaymentMethod = paymentMethod,
-            DeliveryAddress = deliveryAddress,
+            deliveryAddress = deliveryAddress,
             Fees = fees,
             Status = OrderStatus.Placed
         };
 
         foreach (var item in items)
         {
-            order._items.Add(new OrderItem(order.Id, item.Name, item.Quantity, item.UnitPrice, item.Sku));
+            order.orderItems.Add(new OrderItem(
+                order.Id,
+                item.Name,
+                item.Quantity,
+                item.UnitPrice,
+                item.StockKeepingUnit));
         }
 
         order.RecalculateTotals();
@@ -70,7 +75,7 @@ public sealed class Order : BaseEntity
     public void AssignDelivererId(Guid delivererId)
     {
         DelivererId = delivererId;
-        Touch();
+        MarkUpdated();
     }
 
     public void MarkAssembled(string photoId)
@@ -79,7 +84,7 @@ public sealed class Order : BaseEntity
 
         AssembledOrderPhotoId = photoId;
         Status = OrderStatus.Assembled;
-        Touch();
+        MarkUpdated();
     }
 
     public void AttachRoute(string routeGraphId)
@@ -87,13 +92,13 @@ public sealed class Order : BaseEntity
         ArgumentException.ThrowIfNullOrWhiteSpace(routeGraphId);
 
         RouteGraphId = routeGraphId;
-        Touch();
+        MarkUpdated();
     }
 
     public void RecalculateTotals()
     {
-        ItemsTotal = _items.Sum(i => i.LineTotal);
+        ItemsTotal = orderItems.Sum(i => i.LineTotal);
         TotalAmount = ItemsTotal + Fees;
-        Touch();
+        MarkUpdated();
     }
 }

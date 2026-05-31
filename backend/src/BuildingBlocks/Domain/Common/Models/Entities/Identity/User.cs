@@ -32,12 +32,12 @@ public abstract class User : BaseEntity
     public void Deactivate()
     {
         IsActive = false;
-        Touch();
+        MarkUpdated();
     }
 
     public void Activate()
     {
         IsActive = true;
-        Touch();
+        MarkUpdated();
     }
 }
