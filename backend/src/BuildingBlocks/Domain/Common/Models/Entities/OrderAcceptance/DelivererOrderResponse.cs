@@ -1,12 +1,11 @@
-using TMS.Domain.Common.Models.Entities;
-
 namespace TMS.Domain.Common.Models.Entities.OrderAcceptance;
 
 public sealed class DelivererOrderResponse : BaseEntity
 {
     public Guid OrderId { get; private set; }
-    public AvailableOrder AvailableOrder { get; private set; } = null!;
+
     public Guid DelivererId { get; private set; }
+
     public string? Comment { get; private set; }
 
     private DelivererOrderResponse()

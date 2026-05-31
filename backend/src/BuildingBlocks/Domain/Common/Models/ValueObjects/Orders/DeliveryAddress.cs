@@ -3,12 +3,19 @@ namespace TMS.Domain.Common.Models.ValueObjects.Orders;
 public sealed class DeliveryAddress
 {
     public string City { get; private set; } = string.Empty;
+
     public string Street { get; private set; } = string.Empty;
+
     public string Building { get; private set; } = string.Empty;
+
     public string? Apartment { get; private set; }
+
     public string PostalCode { get; private set; } = string.Empty;
+
     public string? Comment { get; private set; }
+
     public double? Latitude { get; private set; }
+
     public double? Longitude { get; private set; }
 
     private DeliveryAddress()
@@ -38,5 +45,5 @@ public sealed class DeliveryAddress
     public string ToDisplayString() =>
         string.Join(", ",
             new[] { City, Street, Building, Apartment, PostalCode }
-                .Where(part => !string.IsNullOrWhiteSpace(part)));
+                .Where(static part => !string.IsNullOrWhiteSpace(part)));
 }

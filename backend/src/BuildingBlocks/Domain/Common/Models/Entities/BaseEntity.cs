@@ -2,7 +2,11 @@ namespace TMS.Domain.Common.Models.Entities;
 
 public abstract class BaseEntity
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
-    public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
-    public DateTime? UpdatedAtUtc { get; set; }
+    public Guid Id { get; protected set; } = Guid.NewGuid();
+
+    public DateTime CreatedAtUtc { get; protected set; } = DateTime.UtcNow;
+
+    public DateTime? UpdatedAtUtc { get; protected set; }
+
+    protected void Touch() => UpdatedAtUtc = DateTime.UtcNow;
 }

@@ -1,30 +1,39 @@
-using TMS.Domain.Common.Models.Entities;
-
 namespace TMS.Domain.Common.Models.Entities.OrderAcceptance;
 
-/// <summary>
-/// Заказ, доступный для отклика курьеров (снимок из order.placed).
-/// </summary>
 public sealed class AvailableOrder : BaseEntity
 {
     public Guid OrderId { get; private set; }
+
     public Guid CustomerId { get; private set; }
+
     public decimal TotalAmount { get; private set; }
+
     public decimal Fees { get; private set; }
+
     public string OrderStatus { get; private set; } = string.Empty;
+
     public string PaymentMethod { get; private set; } = string.Empty;
 
     public string City { get; private set; } = string.Empty;
+
     public string Street { get; private set; } = string.Empty;
+
     public string Building { get; private set; } = string.Empty;
+
     public string PostalCode { get; private set; } = string.Empty;
+
     public string? Apartment { get; private set; }
+
     public string? AddressComment { get; private set; }
+
     public double? Latitude { get; private set; }
+
     public double? Longitude { get; private set; }
 
     public int ItemCount { get; private set; }
+
     public bool IsOpenForResponses { get; private set; } = true;
+
     public DateTime PlacedAtUtc { get; private set; }
 
     private AvailableOrder()
@@ -69,4 +78,10 @@ public sealed class AvailableOrder : BaseEntity
             CreatedAtUtc = DateTime.UtcNow,
             IsOpenForResponses = true
         };
+
+    public void CloseForResponses()
+    {
+        IsOpenForResponses = false;
+        Touch();
+    }
 }
