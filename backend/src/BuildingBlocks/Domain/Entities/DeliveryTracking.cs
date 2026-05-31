@@ -3,7 +3,7 @@ using TMS.Domain.Enums;
 
 namespace TMS.Domain.Entities;
 
-public sealed class DeliveryTracking : BaseEntity
+public class DeliveryTracking : BaseEntity
 {
     public Guid OrderId { get; private set; }
 

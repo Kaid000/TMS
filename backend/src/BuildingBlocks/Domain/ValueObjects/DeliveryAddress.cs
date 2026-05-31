@@ -1,6 +1,6 @@
 namespace TMS.Domain.ValueObjects;
 
-public sealed class DeliveryAddress
+public class DeliveryAddress
 {
     public string City { get; private set; } = string.Empty;
 

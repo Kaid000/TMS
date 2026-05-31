@@ -3,7 +3,7 @@ using TMS.Domain.Enums;
 
 namespace TMS.Domain.Entities;
 
-public abstract class User : BaseEntity
+public class User : BaseEntity
 {
     public string Email { get; private set; } = string.Empty;
 
@@ -28,17 +28,5 @@ public abstract class User : BaseEntity
         PasswordHash = passwordHash;
         Phone = phone;
         DisplayName = displayName;
-    }
-
-    public void Deactivate()
-    {
-        IsActive = false;
-        MarkUpdated();
-    }
-
-    public void Activate()
-    {
-        IsActive = true;
-        MarkUpdated();
     }
 }

@@ -2,7 +2,7 @@ using TMS.Domain.Enums;
 
 namespace TMS.Domain.Entities;
 
-public sealed class Customer : User
+public class Customer : User
 {
     private Customer()
     {

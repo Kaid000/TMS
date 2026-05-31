@@ -4,15 +4,13 @@ using TMS.Domain.ValueObjects;
 
 namespace TMS.Domain.Entities;
 
-public sealed class Order : BaseEntity
+public class Order : BaseEntity
 {
     public Guid CustomerId { get; private set; }
 
     public Customer customer { get; private set; } = null!;
 
     public Guid? DelivererId { get; private set; }
-
-    public Deliverer? deliverer { get; private set; }
 
     public OrderStatus Status { get; private set; } = OrderStatus.Draft;
 
@@ -31,6 +29,10 @@ public sealed class Order : BaseEntity
     public string? RouteGraphId { get; private set; }
 
     public ICollection<OrderItem> orderItems { get; private set; } = [];
+
+    public Customer Customer { get; private set; } = null!;
+
+    public Deliverer? Deliverer { get; private set; }
 
     private Order()
     {

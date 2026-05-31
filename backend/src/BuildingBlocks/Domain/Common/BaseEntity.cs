@@ -1,6 +1,6 @@
 namespace TMS.Domain.Common;
 
-public abstract class BaseEntity
+public class BaseEntity
 {
     public Guid Id { get; protected set; } = Guid.NewGuid();
 

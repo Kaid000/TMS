@@ -2,11 +2,9 @@ using TMS.Domain.Common;
 
 namespace TMS.Domain.Entities;
 
-public sealed class OrderItem : BaseEntity
+public class OrderItem : BaseEntity
 {
     public Guid OrderId { get; private set; }
-
-    public Order order { get; private set; } = null!;
 
     public string Name { get; private set; } = string.Empty;
 
@@ -17,6 +15,8 @@ public sealed class OrderItem : BaseEntity
     public decimal UnitPrice { get; private set; }
 
     public decimal LineTotal => UnitPrice * Quantity;
+
+    public Order Order { get; private set; } = null!;
 
     private OrderItem()
     {

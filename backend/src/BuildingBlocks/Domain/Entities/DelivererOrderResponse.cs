@@ -2,7 +2,7 @@ using TMS.Domain.Common;
 
 namespace TMS.Domain.Entities;
 
-public sealed class DelivererOrderResponse : BaseEntity
+public class DelivererOrderResponse : BaseEntity
 {
     public Guid OrderId { get; private set; }
 
