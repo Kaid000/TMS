@@ -400,4 +400,5 @@ FodyWeavers.xsd
 **/appsettings.*.local.json
 **/secrets.json
 .env
+secrets/
 .env.local

@@ -8,15 +8,12 @@ public class Order : BaseEntity
 {
     public Guid CustomerId { get; private set; }
 
-    public Customer customer { get; private set; } = null!;
-
     public Guid? DelivererId { get; private set; }
 
     public OrderStatus Status { get; private set; } = OrderStatus.Draft;
 
     public PaymentMethod PaymentMethod { get; private set; }
 
-    public DeliveryAddress deliveryAddress { get; private set; } = null!;
 
     public decimal ItemsTotal { get; private set; }
 
@@ -28,11 +25,13 @@ public class Order : BaseEntity
 
     public string? RouteGraphId { get; private set; }
 
-    public ICollection<OrderItem> orderItems { get; private set; } = [];
+    public ICollection<OrderItem> OrderItems { get; private set; } = [];
 
     public Customer Customer { get; private set; } = null!;
 
     public Deliverer? Deliverer { get; private set; }
+    
+    public DeliveryAddress DeliveryAddress { get; private set; } = null!;
 
     private Order()
     {
@@ -51,16 +50,16 @@ public class Order : BaseEntity
         var order = new Order
         {
             CustomerId = customer.Id,
-            customer = customer,
+            Customer = customer,
             PaymentMethod = paymentMethod,
-            deliveryAddress = deliveryAddress,
+            DeliveryAddress = deliveryAddress,
             Fees = fees,
             Status = OrderStatus.Placed
         };
 
         foreach (var item in items)
         {
-            order.orderItems.Add(new OrderItem(
+            order.OrderItems.Add(new OrderItem(
                 order.Id,
                 item.Name,
                 item.Quantity,
@@ -97,7 +96,7 @@ public class Order : BaseEntity
 
     public void RecalculateTotals()
     {
-        ItemsTotal = orderItems.Sum(i => i.LineTotal);
+        ItemsTotal = OrderItems.Sum(i => i.LineTotal);
         TotalAmount = ItemsTotal + Fees;
         MarkUpdated();
     }
