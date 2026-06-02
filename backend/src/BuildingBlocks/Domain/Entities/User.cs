@@ -3,7 +3,7 @@ using TMS.Domain.Enums;
 
 namespace TMS.Domain.Entities;
 
-public class User : BaseEntity
+public abstract class User : BaseEntity
 {
     public string Email { get; private set; } = string.Empty;
 

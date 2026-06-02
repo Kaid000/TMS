@@ -4,18 +4,12 @@ using Microsoft.Extensions.Configuration;
 
 namespace TMS.Infrastructure.Persistence.DbContext;
 
-/// <summary>
-/// Design-time factory for EF Core CLI (migrations).
-/// </summary>
 public sealed class TmsDbContextFactory : IDesignTimeDbContextFactory<TmsDbContext>
 {
     public TmsDbContext CreateDbContext(string[] args)
     {
-        // Environment override for local/dev/test and Docker Compose compatibility
         var connectionString = Environment.GetEnvironmentVariable("TMS_CONNECTION_STRING");
 
-        // Read from appsettings*.json in the working directory (typically the "startup" project
-        // when `dotnet ef` is executed).
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
