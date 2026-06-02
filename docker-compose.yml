@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: tms-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: tms
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - tms-postgres-data:/var/lib/postgresql/data
+    secrets:
+      - postgres_password
+      - DefaultConnectionString
+
+volumes:
+  tms-postgres-data:
+
+secrets:
+  postgres_password:
+    file: ./secrets/postgres_password.txt
+  DefaultConnectionString:
+    # Полный connection string для приложения, не для самой БД
+    # пример содержимого файла:
+    # Host=db;Port=5432;Database=tms;Username=postgres;Password=ОченьСекретныйПароль
+    file: ./secrets/DefaultConnectionString.txt
+
