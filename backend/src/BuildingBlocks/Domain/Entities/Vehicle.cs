@@ -12,6 +12,8 @@ public class Vehicle : BaseEntity
 
     public int? YearOfManufacture { get; private set; }
 
+    public string? Color { get; private set; }
+
     private Vehicle()
     {
     }
